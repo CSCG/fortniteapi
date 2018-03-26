@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name = "fortniteapi",
     packages = ["fortniteapi"],
-    version = "1.0.5",
+    version = "1.0.6",
     description = "A python wrapper for the fortnitetracker.com API",
     long_description = """ 
     A python wrapper for the fortnitetracker.com API. I will add a list on github of all the variables soon
