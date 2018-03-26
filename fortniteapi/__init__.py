@@ -5,6 +5,7 @@ import sys
 
 class tracker:
 
+    # Set user agent and configure variables if entered
     def __init__(self, api_key, user=None, platform=None, user_agent=None):
         self.api_key = api_key
         if user_agent != None:
@@ -16,20 +17,30 @@ class tracker:
         if platform != None:
             self.platform = platform
 
+    # Setters to set user, platform, api key and user agent
     def setUser(self, user):
         self.user = user
         
     def setPlatform(self, platform):
         self.platform = platform
 
+    def setApiKey(self, key):
+        self.api_key = key
+
+    def setUserAgent(self, agent):
+        self.user_agent = agent
+
+    # Get stats method to get and parse statistics from fortnitetracker api
     def get_stats(self):
-        self.url = "https://api.fortnitetracker.com/v1/profile/" + self.platform + "/" + self.user
-        self.header = {"TRN-Api-Key": self.api_key, "User-Agent": self.user_agent}
-        self.req = urllib.request.Request(self.url, headers=self.header)
-        self.resp = urllib.request.urlopen(self.req)
-        self.resp = self.resp.read()
-        self.parsed = json.loads(self.resp)
+        self.url = "http://api.fortnitetracker.com/v1/profile/" + self.platform + "/" + self.user # Set url based on variables
+        self.header = {"TRN-Api-Key": self.api_key, "User-Agent": self.user_agent} # Configure header with api key and user agent
+        self.req = urllib.request.Request(self.url, headers=self.header) # Create request
+        self.resp = urllib.request.urlopen(self.req) # Send request
+        self.resp = self.resp.read() # Get response
+        self.parsed = json.loads(self.resp) # Parse response
         
+        # Constant variables to be accessed after running get stats
+        # For list of what each variable means see variables.txt
         self.EPIC_USER = self.parsed["epicUserHandle"]
         self.FULL_PLATFORM = self.parsed["platformNameLong"]
 
