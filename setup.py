@@ -16,6 +16,7 @@ setup(
     	tracker = fortniteapi.tracker("<your api key>, <user>, <platform>")
 
     	wins = tracker.SOLO_WINS
+        
     	print(wins)
 
     """,
